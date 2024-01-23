@@ -1,0 +1,42 @@
+#home-container{
+    width: 70%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#home-container-right{
+    display: flex;
+    flex-direction: column;
+}
+
+#home-container-right .heading{
+    text-align: start;
+}
+
+#home-container-right h6{
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+#home-container-right form {
+    margin-top: 20px; /* Adjust the margin as needed */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align items to the start of the flex container */
+}
+
+#home-container-right form input {
+    margin-bottom: 10px; /* Adjust the margin as needed */
+    width: 200px;
+}
+
+#home-container #home-container-right #home-container-right-bottom{
+
+    margin-top: -20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
