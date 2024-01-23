@@ -1,14 +1,21 @@
 #layout-header nav {
   display: flex;
   justify-content: space-between;
-  padding: 0 10px;
+  align-items: center;
   background: #2196f3;
   color: white;
-  box-shadow: 1px 1px 1px 1px lightgrey; }
-  #layout-header nav .mini-logo p {
-    margin: 5px;
-    font-size: 1.4rem;
-    font-weight: bold; }
+  box-shadow: 1px 1px 1px 1px lightgrey;
+}
+  #layout-header nav .mini-logo  {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+  }
+
+  #layout-header nav .mini-logo img{
+    width: 100px;
+  }
   #layout-header nav .auth-links ul {
     margin: 5% 5px;
     list-style-type: none;

@@ -11,9 +11,10 @@
         <h3 class="heading">Welcome Back!</h3>
         <h3 class="heading">Sign In to</h3>
         <h6 class="heading">Placement Cell Career Camp</h6>
-        <form action="/users/create-session" method="post">
-            <input type="text" name="name" placeholder="Enter Username" required>
-            <input type="text" name="password" placeholder="Enter Password" required>
+        
+        <form action="/users/sign-in" method="post">
+            <input type="email" name="email" placeholder="Email ID" required>
+            <input type="text" name="password" placeholder="Password" required>
             <input id="form-submit-button" type="submit" value="Sign-In">
             
         </form> 
@@ -22,7 +23,7 @@
         <p>
             Don't have an account? 
         </p> 
-        <a href="">SignUp</a>   
+        <a href="/users/sign-up">SignUp</a>   
 
     </div>
     </div> 

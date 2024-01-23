@@ -3,6 +3,12 @@ const express = require('express');
 const app = express();
 
 const port = 9999;
+// Import the Mongoose connection object from the mongoose.js file in the config directory
+const db = require('./config/mongoose');
+
+// Middleware to parse incoming form data with 'urlencoded' payloads
+// This enables handling of form submissions and populates 'req.body' with the parsed data.
+app.use(express.urlencoded());
 
 // Import express-ejs-layouts for layout support
 const expressLayouts = require('express-ejs-layouts');
