@@ -1,4 +1,4 @@
-#student-list {
+#interview-list {
     width: 80%;
     margin: auto;
     display: flex;
@@ -6,7 +6,7 @@
     align-items: center;
 }
 
-.student-list-content {
+.interview-list-top {
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -15,16 +15,16 @@
     margin-top: 30px;
 }
 
-.student-list-table {
+.interview-list-table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 10px;
 }
 
-.student-list-table thead{
+.interview-list-table thead{
     background-color: #2196f3;
 }
-.student-list-table th, .student-list-table td {
+.interview-list-table th, .interview-list-table td {
     border: 1px solid #ccc;
     padding: 5px;
     text-align: center;
@@ -52,10 +52,10 @@
     background-color: #137bcf;
 }
 
-.delete-button{
+.button-update{
     display: inline-block;
-    padding: 5px 10px;
-    background-color:  red;
+    padding: 3px 15px;
+    background-color: #2196f3;
     color: white;
     text-align: center;
     text-decoration: none;
@@ -63,7 +63,6 @@
     cursor: pointer;
     border-radius: 5px;
 }
-
-.delete-button :hover{
-    background-color: darkred;
+.button-update:hover {
+    background-color: #137bcf; /* Darker shade on hover */
 }

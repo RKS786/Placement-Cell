@@ -1,66 +1,55 @@
-<form
-			class="w-50 mx-auto mt-4"
-			action="/users/create-student"
-			method="post"
-			style="
-				height: 100%;
-				display: grid;
-				place-content: center;
-				background: white;
-				border-radius: 5px;
-				box-shadow: 7px 7px 12px rgba(0, 0, 0, 0.05);
-				padding: 50px 70px;
-			"
-		>
-        <h3 class="text-center mb-4">Add Student</h3>
+<link rel="stylesheet" href="/css/add_student.css">
 
-        <div class="mb-3">
-            <label for="batch" class="form-label">Batch</label>
-            <input type="text" class="form-control" id="batch" name="batch" />
+<form class="student-form" action="/users/create-student" method="post">
+    <h3 class="form-title">Add Student</h3>
+
+    <div class="form-group">
+        <label for="batch">Batch</label>
+        <input type="text" class="form-control" id="batch" name="batch" />
+    </div>
+
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" name="name" />
+    </div>
+
+    <div class="form-group">
+        <label for="email">Email address</label>
+        <input type="email" class="form-control" id="email" placeholder="abc@gmail.com" name="email" />
+    </div>
+
+    <div class="form-group">
+        <label for="contactNumber">Mobile Number</label>
+        <input type="text" class="form-control" id="contactNumber" name="contactNumber" />
+    </div>
+
+    <div class="form-group">
+        <label for="college">College Name</label>
+        <input type="text" class="form-control" id="college" name="college" />
+    </div>
+
+    <div class="form-group">
+        <label for="placement">Placement Status</label>
+        <select class="form-select" aria-label="Default select example" name="placement" id="placement">
+            <option value="Placed">Placed</option>
+            <option value="Not Placed">Not Placed</option>
+        </select>
+    </div>
+
+    <div class="form-group d-flex ">
+        <div>
+            <label for="dsa">DSA</label>
+            <input type="text" class="form-control" id="dsa" name="dsa" />
         </div>
-    
-        <div class="mb-3">
-            <label for="name" class="form-label">Name</label>
-            <input type="text" class="form-control" id="name" name="name" />
+        <div>
+            <label for="webd">Web Development</label>
+            <input type="text" class="form-control" id="webd" name="webd" />
         </div>
-    
-        <div class="mb-3">
-            <label for="email" class="form-label">Email address</label>
-            <input type="email" class="form-control" id="email" placeholder="abc@gmail.com" name="email" />
+        <div>
+            <label for="react">React</label>
+            <input type="text" class="form-control" id="react" name="react" />
         </div>
-    
-        <div class="mb-3">
-            <label for="contactNumber" class="form-label">Mobile Number</label>
-            <input type="text" class="form-control" id="contactNumber" name="contactNumber" />
-        </div>
-    
-        <div class="mb-3">
-            <label for="college" class="form-label">College Name</label>
-            <input type="text" class="form-control" id="college" name="college" />
-        </div>
-    
-        <div class="mb-3">
-            <label for="placement" class="form-label">Placement Status</label>
-            <select class="form-select" aria-label="Default select example" name="placement" id="placement">
-                <option value="Placed">Placed</option>
-                <option value="Not Placed">Not Placed</option>
-            </select>
-        </div>
-    
-        <div class="mb-3 d-flex justify-content-between">
-            <div class="p-1">
-                <label for="dsa" class="form-label">DSA</label>
-                <input type="text" class="form-control" id="dsa" name="dsa" />
-            </div>
-            <div class="p-1">
-                <label for="webd" class="form-label">Web Development</label>
-                <input type="text" class="form-control" id="webd" name="webd" />
-            </div>
-            <div class="p-1">
-                <label for="react" class="form-label">React</label>
-                <input type="text" class="form-control" id="react" name="react" />
-            </div>
-        </div>
-    
-        <button type="submit" class="btn btn-success mx-auto d-block">Create Student</button>
-    </form>
+    </div>
+
+    <button type="submit" class="btn-success ">Create Student</button>
+</form>

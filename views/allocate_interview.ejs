@@ -1,0 +1,32 @@
+<link rel="stylesheet" href="/css/allocate_interview.css">
+
+<div class="container">
+  <form action="/company/schedule-interview" method="post" >
+  <h3>Schedule Interview</h3>
+
+  <div>
+    <label for="name" class="form-label">Name</label>
+    <select class="form-select" aria-label="Default select example" name="id" id="name">
+    <option selected disabled>Select Student</option>
+
+    <%for(let student of students){%>
+    <option value="<%=student.id%>"><%= student.name %></option>
+    <%}%>
+  </select></select>
+  </div>
+
+  <div>
+    <label for="company" class="form-label">Company</label>
+    <input type="text" class="form-control" id="company" name="company"/>
+  </div>
+
+  <div>
+    <label for="date" class="form-label">Date</label>
+    <input type="date" class="form-control" id="date" name="date" />
+  </div>
+
+      <button>
+        Schedule Interview
+      </button>
+</form>
+</div>

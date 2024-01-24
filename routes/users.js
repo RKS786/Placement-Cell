@@ -8,6 +8,7 @@ const userController = require('../controllers/users_controller');
 router.get('/sign-up', userController.signUp);
 router.get('/profile', userController.profile);
 router.get('/add-student', userController.addStudent);
+router.get('/delete-student/:id', userController.deleteStudent)
 
 
 router.post('/sign-in',  userController.signIn);

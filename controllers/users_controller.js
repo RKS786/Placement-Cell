@@ -2,6 +2,7 @@ console.log('user controller loaded');
 
 const User = require('../models/users_db');
 const Student = require('../models/student_db');
+const Company = require('../models/company_db');
 
 // Controller function to sign in for user
 module.exports.signIn = async function(req, res) {
@@ -31,6 +32,7 @@ module.exports.signIn = async function(req, res) {
             user: user,
             students: students
         });
+        
     } catch (error) {
         console.error("Error in user sign in:", error);
         return res.redirect('back');
@@ -114,3 +116,35 @@ module.exports.createStudent = async function (req, res) {
             return res.redirect('back');
         }
     };
+
+//Controller function to delete Student
+module.exports.deleteStudent = async function (req, res) {
+	const { id } = req.params;
+	try {
+		// find the student using id in params
+		const student = await Student.findById(id);
+
+		// find the companies for which interview is scheduled
+		// and delete student from company interviews list
+		if (student && student.interviews.length > 0) {
+			for (let item of student.interviews) {
+				const company = await Company.findOne({ name: item.company });
+				if (company) {
+					for (let i = 0; i < company.students.length; i++) {
+						if (company.students[i].student.toString() === id) {
+							company.students.splice(i, 1);
+							company.save();
+							break;
+						}
+					}
+				}
+			}
+		}
+		await Student.findByIdAndDelete(id);
+		res.render('user_profile');
+
+	} catch (error) {
+		console.log('Error in deleting student', error);
+		return res.redirect('back');
+	}
+};

@@ -1,0 +1,63 @@
+<link rel="stylesheet" href="/css/company.css">
+
+<div id="interview-list">
+
+    <div class="interview-list-top">
+        <div><h1>Interviews</h1></div>
+        <div><a href="/company/allocate" class="button-link">Allocate Interview</a></div>
+    </div>
+
+    <% if(students.length > 0) { %>
+
+        <table class="interview-list-table">
+            <thead>
+                <tr>
+                    <th>Company</th>
+                    <th>Student</th>
+                    <th>Email</th>
+                    <th>Contact</th>
+                    <th>Batch</th>
+                    <th>InterviewDate</th>
+                    <th>Result</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <% for(let student of students) { %>
+                    <% let i = 0; %>
+                    <% while(i < student.interviews.length) { %>
+                        <tr class="interview-item">
+                            <th><%= student.interviews[i].company %></th>
+                            <td><%= student.name %></td>
+                            <td><%= student.email %></td>
+                            <td><%= student.contactNumber %></td>
+                            <td><%= student.batch %></td>
+                            <td><%= student.interviews[i].date %></td>
+                            <td>
+                                <form action="/company/update-status/<%= student.id %>" method="post">
+                                    <input hidden type="text" name="companyName" value="<%= student.interviews[i].company %>" />
+                                    <select class="form-select" aria-label="Default select example" name="companyResult" id="status" style="min-width: 130px">
+                                        <option selected id="delete-options"><%= student.interviews[i].result %></option>
+                                        <option value="Selected">Selected</option>
+                                        <option value="Not Selected">Not Selected</option>
+                                        <option value="On Hold">On Hold</option>
+                                        <option value="Pending">Pending</option>
+                                    </select>
+                                    <button type="submit" class="button-update">Update</button>
+                                </form>
+                            </td>
+                        </tr>
+                        <% i++; %>
+                    <% } %>
+                <% } %>
+            </tbody>
+        </table>
+
+    <% } else { %>
+        <tr>
+            <td>
+                <h2>No Records Found</h2>
+            </td>
+        </tr>
+    <% } %>
+</div>

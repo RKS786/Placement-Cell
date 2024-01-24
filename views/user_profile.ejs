@@ -1,12 +1,13 @@
 <link rel="stylesheet" href="/css/user_profile.css">
 
 <div id="student-list">
-    <% if(locals.user) { %>
+    
+    <div class="student-list-content">
+        <div><h3>List of Students</h3></div>
+        <div><a href="/users/add-student" class="button-link">+ Add Student</a></div>
+    </div>
 
-        <div class="student-list-content">
-            <div><h3>List of Students</h3></div>
-            <div><a href="/users/add-student" class="form-submit-button">+ Add Student</a></div>
-        </div>
+    <% if(locals.user) { %>
 
         <table class="student-list-table">
             <thead>
@@ -42,7 +43,9 @@
                                     NONE
                                 <% } %>
                             </td>
-                            <td></td>
+                            <td>
+								<a href="/users/delete-student/<%=student.id%>" class="delete-button" >Delete</a>
+							</td>
                         </tr>
                     <% } %>
                 <% } else { %>
