@@ -1,5 +1,59 @@
+<link rel="stylesheet" href="/css/user_profile.css">
+
 <div id="student-list">
     <% if(locals.user) { %>
-        <p>Work in progress!</p>
-    <% } %> 
+
+        <div class="student-list-content">
+            <div><h3>List of Students</h3></div>
+            <div><a href="/users/add-student" class="form-submit-button">+ Add Student</a></div>
+        </div>
+
+        <table class="student-list-table">
+            <thead>
+                <tr>
+                    <th>Batch</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Contact</th>
+                    <th>DSA</th>
+                    <th>WEB</th>
+                    <th>REACT</th>
+                    <th>Interview</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if(students.length > 0) { %>
+                    <% for(student of students) { %> 
+                        <tr class="student-item">
+                            <td><%= student.batch %></td>
+                            <td><%= student.name %></td>
+                            <td><%= student.email %></td>
+                            <td><%= student.contactNumber %></td>
+                            <td><%= student.dsa %></td>
+                            <td><%= student.webd %></td>
+                            <td><%= student.react %></td>
+                            <td>
+                                <% if(student.interviews.length) { %>
+                                    <% for(let company of student.interviews) { %>
+                                        <a href="" class="company-name"><%= company.company %></a>
+                                    <% } %>
+                                <% } else { %>
+                                    NONE
+                                <% } %>
+                            </td>
+                            <td></td>
+                        </tr>
+                    <% } %>
+                <% } else { %>
+                    <tr>
+                        <td colspan="9" style="text-align: center;">
+                            <h2>No Records Found</h2>
+                        </td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+
+    <% } %>
 </div>

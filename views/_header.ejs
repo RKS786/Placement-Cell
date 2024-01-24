@@ -16,7 +16,9 @@
         <div class="auth-links">
             <ul>
                   <% if(locals.user) { %>
-                   <li><a href="/users/profile/<%= user.id %>"><%= user.name %></a></li>
+                   <li><a href="/users/profile"><%= user.name %></a></li>
+                   <li><a href="/users/add-student">Add Students</a></li>
+                   <li><a href="">Generate CSV</a></li>
                    <li><a href="/">Sign Out</a></li>
                   <% } else { %>
                     <li><a href="/">Sign In</a></li>
