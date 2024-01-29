@@ -4,39 +4,67 @@ const User = require('../models/users_db');
 const Student = require('../models/student_db');
 const Company = require('../models/company_db');
 
-// Controller function to sign in for user
-module.exports.signIn = async function(req, res) {
+
+// Controller function to create session
+module.exports.createSession = async function (req, res) {
+    console.log('Session created successfully');
+
     try {
-        console.log("in createStudent controller function");
-
-        // Check whether the user exists or not
-        const user = await User.findOne({ email: req.body.email });
-
-        if (!user) {
-            console.log('User does not exist');
-            return res.redirect('back');
-        }
-
-        // Validate the password
-        if (user.password !== req.body.password) {
-            console.log('Password does not match');
-            return res.redirect('back');
-        }
-
         // Retrieve all students
         const students = await Student.find({}).exec();
-        console.log(students);
+        let user =await User.findOne({email:req.body.email});
 
         return res.render('user_profile', {
-            title: 'User profile',
-            user: user,
-            students: students
+            students: students,
+            user: user
         });
         
     } catch (error) {
-        console.error("Error in user sign in:", error);
-        return res.redirect('back');
+        console.error('Error while retrieving students:', error);
+        return res.status(500).send('Internal Server Error');
     }
+};
+
+// Destroy session
+module.exports.destroySession = function(req, res){
+    // Using req.logout() with a callback function
+    req.logout(function(err) {
+        if (err) {
+            // Handle the error, e.g., by sending an error response
+            return res.status(500).send("Error during logout");
+        }
+        
+       // req.flash("success","You have Logged out Successfully");
+        // Redirecting the user to the root URL after logout
+        console.log("You have Logged out Successfully")
+        return res.redirect('/');
+    })
+}
+
+// Controller function to render the sign up page
+module.exports.signUp = function(req, res){
+
+    if(req.isAuthenticated()){
+        return res.render('user_profile',{
+            students: students
+        });
+    }
+
+  return  res.render('user_sign_up',{
+        title:"Placement Cell | Sign Up"
+    });
+}
+
+
+
+// Controller function to  signout
+module.exports.signout = function (req, res) {
+	req.logout(function (err) {
+		if (err) {
+			return next(err);
+		}
+	});
+	return res.redirect('/');
 };
 
 
@@ -76,24 +104,30 @@ module.exports.create = async function(req, res) {
 };
 
 
-// Controller function to render the sign up page
-module.exports.signUp = function(req, res){
-
-  return  res.render('user_sign_up',{
-        title:"Placement Cell | Sign Up"
-    });
-};
-
-//Controller function to add Students
+//Controller function to render add Students page
 module.exports.addStudent = function(req, res){
     return res.render('add_students');
 }
 
 //Controller function to render user's profile page
-module.exports.profile = function(req, res){
+module.exports.profile = async function(req, res){
+    try {
+        // Retrieve all students
+        const students = await Student.find({}).exec();
+        console.log(students);
+        const user = await User.findById(req.params.id);
+        console.log("id",req.params.id);
+        console.log("user",req.user);
 
-    return res.render('user_profile', )
-}
+        return res.render('user_profile', {
+            students: students,
+            user: user
+        });
+    } catch (error) {
+        console.error('Error while retrieving students:', error);
+        return res.status(500).send('Internal Server Error');
+    }
+};
 
 //Controller function to create Student
 module.exports.createStudent = async function (req, res) {
@@ -109,7 +143,13 @@ module.exports.createStudent = async function (req, res) {
             const newStudent = await Student.create({...req.body});
     
             console.log('Student created successfully:', newStudent);
-            return res.render('user_profile');
+
+            const students = await Student.find({}).exec();
+
+            return res.render('user_profile', {
+                students: students,
+                user: req.user
+            });
 
         } catch (error) {
             console.error('Error in creating student:', error);
@@ -141,7 +181,13 @@ module.exports.deleteStudent = async function (req, res) {
 			}
 		}
 		await Student.findByIdAndDelete(id);
-		res.render('user_profile');
+
+        const students = await Student.find({}).exec();
+
+            return res.render('user_profile', {
+                students: students,
+                user: req.user
+            });
 
 	} catch (error) {
 		console.log('Error in deleting student', error);
