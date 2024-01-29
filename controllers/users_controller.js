@@ -10,14 +10,10 @@ module.exports.createSession = async function (req, res) {
     console.log('Session created successfully');
 
     try {
-        // Retrieve all students
-        const students = await Student.find({}).exec();
-        let user =await User.findOne({email:req.body.email});
 
-        return res.render('user_profile', {
-            students: students,
-            user: user
-        });
+        req.flash("success","You have Logged In Successfully");
+
+        return res.redirect('/users/profile');
         
     } catch (error) {
         console.error('Error while retrieving students:', error);
@@ -34,9 +30,8 @@ module.exports.destroySession = function(req, res){
             return res.status(500).send("Error during logout");
         }
         
-       // req.flash("success","You have Logged out Successfully");
+       req.flash("success","You have Logged out Successfully");
         // Redirecting the user to the root URL after logout
-        console.log("You have Logged out Successfully")
         return res.redirect('/');
     })
 }
@@ -45,9 +40,7 @@ module.exports.destroySession = function(req, res){
 module.exports.signUp = function(req, res){
 
     if(req.isAuthenticated()){
-        return res.render('user_profile',{
-            students: students
-        });
+        return res.redirect('/users/profile');
     }
 
   return  res.render('user_sign_up',{
@@ -73,7 +66,8 @@ module.exports.create = async function(req, res) {
     try {
         if (req.body.password !== req.body.confirm_password) {
 
-            // req.flash("error", "Password and confirm password does not match");
+            req.flash("error", "Password and confirm password does not match");
+            console.log("Password and confirm password does not match");
             return res.redirect('back');
         }
 
@@ -84,20 +78,19 @@ module.exports.create = async function(req, res) {
 
             const newUser = await User.create(req.body);
             console.log("User created successfully:", newUser);
-            // req.flash("success","User created successfully");
+            req.flash("success","User created successfully");
             return res.redirect('/');
 
         } else {
 
-            // req.flash("error", "User already exists");
-            console.log("User already exist");
+            req.flash("error", "User already exists");
             return res.redirect('back');
 
         }
     } catch (err) {
 
         console.error("Error in user creation:", err);
-        // req.flash("error", "Error in user creation");
+        req.flash("error", "Error in user creation");
             return res.redirect('back');
 
     }
@@ -114,15 +107,11 @@ module.exports.profile = async function(req, res){
     try {
         // Retrieve all students
         const students = await Student.find({}).exec();
-        console.log(students);
-        const user = await User.findById(req.params.id);
-        console.log("id",req.params.id);
-        console.log("user",req.user);
 
         return res.render('user_profile', {
             students: students,
-            user: user
         });
+
     } catch (error) {
         console.error('Error while retrieving students:', error);
         return res.status(500).send('Internal Server Error');
@@ -137,21 +126,18 @@ module.exports.createStudent = async function (req, res) {
     
             if (existingStudent) {
                 console.log('Email already exists');
+                req.flash("error","Email already exists");
                 return res.redirect('back');
             }
     
             const newStudent = await Student.create({...req.body});
     
-            console.log('Student created successfully:', newStudent);
+            req.flash("success","Student created ");
 
-            const students = await Student.find({}).exec();
-
-            return res.render('user_profile', {
-                students: students,
-                user: req.user
-            });
+            return res.redirect('/users/profile');
 
         } catch (error) {
+            req.flash("error","Error in creating student");
             console.error('Error in creating student:', error);
             return res.redirect('back');
         }
@@ -184,12 +170,13 @@ module.exports.deleteStudent = async function (req, res) {
 
         const students = await Student.find({}).exec();
 
-            return res.render('user_profile', {
-                students: students,
-                user: req.user
-            });
+        req.flash("success","Student deleted ");
+
+        return res.redirect('/users/profile');
 
 	} catch (error) {
+
+        req.flash("error","Error in deleting student");
 		console.log('Error in deleting student', error);
 		return res.redirect('back');
 	}

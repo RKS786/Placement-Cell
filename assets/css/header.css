@@ -16,14 +16,24 @@
   #layout-header nav .mini-logo img{
     width: 100px;
   }
+
   #layout-header nav .auth-links ul {
     margin: 5% 5px;
     list-style-type: none;
     display: flex;
-    font-variant: all-petite-caps; }
-    #layout-header nav .auth-links ul li {
-      margin-right: 10px; }
+    font-variant: all-petite-caps;
+  }
+
+  #layout-header nav .auth-links ul li {
+      margin-right: 10px; 
+  }
+
   #layout-header nav a {
     color: white;
     text-decoration: none;
-    font-family: sans-serif; }
+    font-family: sans-serif; 
+  }
+
+  #layout-header nav .auth-links ul #profile-user-name {
+    margin-right: 200px; 
+  }

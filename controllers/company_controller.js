@@ -32,6 +32,7 @@ module.exports.allocateInterview = async function (req, res) {
 
     // Render the 'allocate_interview' view, passing students and batches data
     return res.render('allocate_interview', { students, array });
+
   } catch (error) {
     // Handle errors if any and redirect back to the previous page
     console.log(`Error in allocating interview: ${error}`);
@@ -43,6 +44,8 @@ module.exports.allocateInterview = async function (req, res) {
 //Controller function to schedule interview
 module.exports.scheduleInterview = async function (req, res) {
   const { id, company, date } = req.body;
+  console.log("id",id);
+  console.log("req id",req.user.id);
   try {
     // Find an existing company with the provided name
     const existingCompany = await Company.findOne({ name: company });
@@ -62,6 +65,7 @@ module.exports.scheduleInterview = async function (req, res) {
     } else {
       // Check if the student's interview is already scheduled for the company
       for (let student of existingCompany.students) {
+        console.log("student id",student.student._id);
         if (student.student._id === id) {
           console.log('Interview with this student already scheduled');
           return res.redirect('back');
@@ -83,11 +87,14 @@ module.exports.scheduleInterview = async function (req, res) {
       student.save();
     }
 
+    req.flash("success","Interview Scheduled Successfully");
     console.log('Interview Scheduled Successfully');
     // Redirect to the '/company/home' page
     return res.redirect('/company/home');
+
   } catch (error) {
     // Handle errors if any and redirect back to the previous page
+    req.flash("error","Error in scheduling interview");
     console.log(`Error in scheduling interview: ${error}`);
     return res.redirect('back');
   }
@@ -129,9 +136,11 @@ module.exports.updateStatus = async function (req, res) {
       }
     }
 
+    req.flash("success","Interview Status Changed Successfully");
     console.log('Interview Status Changed Successfully');
     // Redirect back to the previous page
     return res.redirect('back');
+
   } catch (error) {
     // Handle errors if any and redirect back to the previous page
     console.log(`Error in updating status: ${error}`);

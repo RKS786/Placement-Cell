@@ -8,10 +8,13 @@ const db = require('./config/mongoose');
 
 // Used for session cookie
 const session = require('express-session');
+
 //For Authentication
 const passport = require('passport');
 const passportLocal = require('./config/passport-local-strategy');
 const MongoStore = require('connect-mongo');    // to store session information even after server restarts
+const flash = require('connect-flash');
+const customMware = require('./config/middleware');
 
 // Middleware to parse incoming form data with 'urlencoded' payloads
 // This enables handling of form submissions and populates 'req.body' with the parsed data.
@@ -57,6 +60,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(passport.setAuthenticatedUser);
+app.use(flash());
+app.use(customMware.setFlash);
 
 // Use express router defined in the 'routes' module
 app.use('/', require('./routes'));

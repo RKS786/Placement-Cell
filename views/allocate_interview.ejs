@@ -10,19 +10,19 @@
     <option selected disabled>Select Student</option>
 
     <%for(let student of students){%>
-    <option value="<%=student.id%>"><%= student.name %></option>
+    <option value="<%=student.id%>" ><%= student.name %></option>
     <%}%>
   </select></select>
   </div>
 
   <div>
     <label for="company" class="form-label">Company</label>
-    <input type="text" class="form-control" id="company" name="company"/>
+    <input type="text" class="form-control" id="company" name="company" required/>
   </div>
 
   <div>
     <label for="date" class="form-label">Date</label>
-    <input type="date" class="form-control" id="date" name="date" />
+    <input type="date" class="form-control" id="date" name="date"required/>
   </div>
 
       <button>

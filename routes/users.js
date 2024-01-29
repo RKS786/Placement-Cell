@@ -11,7 +11,7 @@ router.get('/profile', passport.checkAuthentication, userController.profile);
 router.get('/add-student', passport.checkAuthentication, userController.addStudent);
 router.get('/delete-student/:id',passport.checkAuthentication, userController.deleteStudent)
 
-router.post('/create',passport.checkAuthentication, userController.create);
+router.post('/create', userController.create);
 router.post('/create-student',passport.checkAuthentication, userController.createStudent);
 
 router.post('/create-session', passport.authenticate('local', {failureRedirect: '/'}), userController.createSession);
