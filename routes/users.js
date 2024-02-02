@@ -10,6 +10,7 @@ router.get('/sign-up', userController.signUp);
 router.get('/profile', passport.checkAuthentication, userController.profile);
 router.get('/add-student', passport.checkAuthentication, userController.addStudent);
 router.get('/delete-student/:id',passport.checkAuthentication, userController.deleteStudent)
+router.get('/download-csv', passport.checkAuthentication, userController.downloadCsv);
 
 router.post('/create', userController.create);
 router.post('/create-student',passport.checkAuthentication, userController.createStudent);

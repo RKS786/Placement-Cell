@@ -3,6 +3,7 @@ console.log('user controller loaded');
 const User = require('../models/users_db');
 const Student = require('../models/student_db');
 const Company = require('../models/company_db');
+const fs = require('fs');
 
 
 // Controller function to create session
@@ -178,6 +179,70 @@ module.exports.deleteStudent = async function (req, res) {
 
         req.flash("error","Error in deleting student");
 		console.log('Error in deleting student', error);
+		return res.redirect('back');
+	}
+};
+
+
+// Controller function to download report
+module.exports.downloadCsv = async function (req, res) {
+	try {
+		const students = await Student.find({});
+
+        // Initialize variables to store CSV data
+		let data = '';
+		let no = 1;
+		let csv = 'S.No, Name, Email, College, Placemnt, Contact Number, Batch, DSA Score, WebDev Score, React Score, Interview, Date, Result';
+
+        // Iterate over each student
+		for (let student of students) {
+            // Construct CSV row for each student
+			data =
+				no +
+				',' +
+				student.name +
+				',' +
+				student.email +
+				',' +
+				student.college +
+				',' +
+				student.placement +
+				',' +
+				student.contactNumber +
+				',' +
+				student.batch +
+				',' +
+				student.dsa +
+				',' +
+				student.webd +
+				',' +
+				student.react;
+
+                // If student has interviews scheduled
+			if (student.interviews.length > 0) {
+				for (let interview of student.interviews) {
+                    // Append interview details to CSV row
+					data += ',' + interview.company + ',' + interview.date.toString() + ',' + interview.result;
+				}
+			}
+            // Increment serial number
+			no++;
+            // Append CSV row to CSV content
+			csv += '\n' + data;
+		}
+
+        // Write CSV data to a file
+		const dataFile = fs.writeFile('report/data.csv', csv, function (error, data) {
+			if (error) {
+				console.log(error);
+				return res.redirect('back');
+			}
+			console.log('Report generated successfully');
+            // Download the CSV file
+			return res.download('report/data.csv');
+		});
+	} catch (error) {
+		console.log(`Error in downloading file: ${error}`);
 		return res.redirect('back');
 	}
 };
