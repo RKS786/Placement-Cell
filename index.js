@@ -48,7 +48,7 @@ const sessionMiddleware = session({
         maxAge: 1000 * 60 * 100,
     },
     store: MongoStore.create({
-        mongoUrl: "mongodb://127.0.0.1/placement-cell",
+        mongoUrl: "mongodb://localhost/placement-cell",
         autoRemove: 'disabled', //Disable expired sessions cleaning
     }),
 });
