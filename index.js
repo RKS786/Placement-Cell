@@ -48,7 +48,7 @@ const sessionMiddleware = session({
         maxAge: 1000 * 60 * 100,
     },
     store: MongoStore.create({
-        mongoUrl: "mongodb+srv://Rahul:R%40nik@cluster0.tbkpwqi.mongodb.net/placement-cell?retryWrites=true&w=majority",
+        mongoUrl: "mongodb+srv://Rahul:R%40nik@cluster0.tbkpwqi.mongodb.net/placement-cell?retryWrites=true&w=majority&ssl=true",
         autoRemove: 'disabled', //Disable expired sessions cleaning
     }),
 });
