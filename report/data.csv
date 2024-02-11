@@ -1,5 +1,7 @@
 S.No, Name, Email, College, Placemnt, Contact Number, Batch, DSA Score, WebDev Score, React Score, Interview, Date, Result
-1,Praveen Chauhan,praveen@gmail.com,M.I.T,Placed,7788866552,2010-2011,75,80,90,coding ninja,2024-01-27,Selected,webd,2024-02-03,Not Selected
-2,Chitranshu Chaturvedi,chitranshu@gmail.com,I.I.M,Not Placed,4546546576546,2015-2016,75,67,89,coding ninja,2024-02-02,Selected
-3,Abhinav,abhinav@gmail.com,I.I.I.T,Placed,6757567575,2016-2017,56,90,89,Tech Mahindra,2024-02-16,Selected,L$T,2024-02-11,Not Selected,L$T,2024-02-11,Pending,L$T,2024-02-11,Pending
-4,abc,abc@gmail.com,I.I.M,Placed,9999999999,2016-2017,67,78,89,amazon,2024-02-22,Selected,amazon,2024-02-23,Pending
+1,abc,abc@gmail.com,M.I.T,Placed,7678987765,2010-2011,90,78,89,Tech Mahindra,2024-03-10,Not Selected
+2,xyz,xyz@gmail.com,I.I.M,Not Placed,9999999999,2015-2016,90,98,90,webd,2024-03-08,On Hold
+3,Mak,mak@gmail.com,I.I.T,Placed,8765467887,2016-2017,67,80,100,L$T,2024-03-12,Selected
+4,gaurav,gaurav@gmail.com,I.I.I.T,Placed,7865456787,2016-2017,90,80,97,HCL ,2024-03-03,Selected
+5,Pintu,pintu@gmail.com,M.I.T,Placed,8767876787,2011-2012,75,98,97,Tech Mahindra,2024-03-08,Selected,webd,2024-03-02,Pending
+6,Manish,manish@gmail.com,I.I.M,Not Placed,7687986798,2011-2012,56,78,89,L$T,2024-03-15,Selected

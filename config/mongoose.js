@@ -2,7 +2,7 @@
 const mongoose = require('mongoose');
 
 // Connect to the MongoDB server
-mongoose.connect("mongodb://127.0.0.1/placement-cell");
+mongoose.connect("mongodb+srv://Rahul:R%40nik@cluster0.tbkpwqi.mongodb.net/placement-cell", { useNewUrlParser: true, useUnifiedTopology: true });
 
 // Get the default connection
 const db = mongoose.connection;
