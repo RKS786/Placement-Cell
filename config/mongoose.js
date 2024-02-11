@@ -2,7 +2,7 @@
 const mongoose = require('mongoose');
 
 // Connect to the MongoDB server
-mongoose.connect("mongodb+srv://Rahul:R%40nik@cluster0.tbkpwqi.mongodb.net/placement-cell?retryWrites=true&w=majority");
+mongoose.connect("mongodb+srv://Rahul:R%40nik@cluster0.tbkpwqi.mongodb.net/placement-cell?retryWrites=true&w=majority&ssl=true");
 
 // Get the default connection
 const db = mongoose.connection;
